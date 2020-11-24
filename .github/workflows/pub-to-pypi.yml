@@ -1,14 +1,12 @@
 name: CI
-on: 
-  push: 
-    branches: [main]
+on: push: 
 
 jobs:
   build-n-publish:
-    name: Pee
+    name: build and publish pee to pypi
     runs-on: macOS-latest
     steps:
-      - uses: action/checkout@v1
+      - uses: action/checkout@master
       - name: Set up Python 3.6
         uses: actions/setup-python@v1
         with:
