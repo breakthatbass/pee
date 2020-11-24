@@ -2,7 +2,7 @@ from psutil import virtual_memory, swap_memory
 from argparse import ArgumentParser
 import sys
 
-from __init__ import __version__
+from .__init__ import __version__
 
 mem = virtual_memory()
 swap = swap_memory()
