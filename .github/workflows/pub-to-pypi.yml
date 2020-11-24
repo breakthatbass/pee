@@ -1,13 +1,14 @@
-name: public dist to pypi
-
-on: push
+name: CI
+on: 
+  push: 
+    branches: [main]
 
 jobs:
   build-n-publish:
     name: Pee
     runs-on: macOS-latest
     steps:
-      - uses: action/checkout@main
+      - uses: action/checkout@mv1
       - name: Set up Python 3.6
         uses: actions/setup-python@v1
         with:
