@@ -3,7 +3,7 @@
 ## (p)ython fr(ee) 
 ### the Linux free command but for MacOS and built in Python
 
-`pee` displays stats about `total`, `used`, `free`, and `available` memory in the system. By default (no flag), it returns the stts as bytes.
+`pee` displays stats about `total`, `used`, `free`, and `available` memory in the system. By default (no flag), it returns the stats as bytes.
 
 `time` also returns `buffer` and `cache` info which is not available from the MacOS kernal. 
 
@@ -11,7 +11,7 @@
 `pip install pee`
 
 ## Usage
-`pee <metric>` where `metric` is a data metric.  
+`pee <-metric>` where `metric` is a data metric.  
 
 ### flags
 ```
