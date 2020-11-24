@@ -9,7 +9,7 @@ jobs:
     name: build and publish pee to pypi
     runs-on: macOS-latest
     steps:
-      - uses: action/checkout@main
+      - uses: action/checkout@pee
         with: 
           repository: ''
       - name: Set up Python 3.6
