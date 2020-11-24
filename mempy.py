@@ -5,7 +5,6 @@ import sys
 mem = virtual_memory()
 swap = swap_memory()
 
-
 def metric_info(flag):
     '''get appropriate number for math for metric based on flag'''
     m = 0
@@ -68,11 +67,6 @@ def print_info(metric, unit):
 
 def main():
 
-    metric = 'gb'
-    m = metric_info(metric)
-
-
-
     ap = ArgumentParser(description="Display amount of free and used memory in the system")
     ap.add_argument("-g", "--gigabytes", action="store_true", 
             help="display memory info in gigabytes")
@@ -88,15 +82,19 @@ def main():
     if args.gigabytes:
         metric = metric_info('gb')
         print_info(metric, "GB")
+
     elif args.megabytes:
         metric = metric_info('mb')
         print_info(metric, "MB") 
+    
     elif args.kilobytes:
         metric = metric_info('kb')
         print_info(metric, 'KB')
+    
     elif args.bytes:
         metric = metric_info('b')
         print_info(metric, "")
+    
     else:
         metric = metric_info('b')
         print_info(metric, "")
