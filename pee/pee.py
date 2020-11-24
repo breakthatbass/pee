@@ -2,9 +2,11 @@ from psutil import virtual_memory, swap_memory
 from argparse import ArgumentParser
 import sys
 
+from __init__ import __version__
+
 mem = virtual_memory()
 swap = swap_memory()
-version_info = "pee version: 0.0.1"
+version_info = f"pee version: {__version__}"
 
 def metric_info(flag):
     '''get appropriate number for math for metric based on flag'''
@@ -13,9 +15,9 @@ def metric_info(flag):
         m = 1
         return m
     metrics = {
-            'gb': 1000000000,
-            'kb': 1000000,
-            'mb': 1000
+            'gb': 1073741824,
+            'kb': 1024,
+            'mb': 1048576
             }
     if flag not in metrics.keys():
         print("problem with metric")
@@ -31,15 +33,15 @@ def vm_metrics(item, m):
         if m == 1: # if measured in bytes, return without decimals
             result = item/m
             return int(result)
-        else:
+        elif m == 1073741824: # if GB, return with 2 decimal places
             result  = round(item/m,2)
+            return result
+        else:
+            result = round(item/m)
             return result
     except:
         return None
 
-
-def swap_metric(metric):
-    pass
 
 def print_info(metric, unit):
     '''print info about virtual memory based on flag'''
@@ -50,10 +52,10 @@ def print_info(metric, unit):
     free = vm_metrics(mem.free, metric)
     available = vm_metrics(mem.available, metric)
     
-    print(f"\ttotal: {total}{unit}")
-    print(f"\tused: {used}{unit}")
-    print(f"\tfree: {free}{unit}")
-    print(f"\tavailable: {available}{unit}")
+    print(f"\ttotal: {total} {unit}")
+    print(f"\tused: {used} {unit}")
+    print(f"\tfree: {free} {unit}")
+    print(f"\tavailable: {available} {unit}")
 
     # SWAP info
     print("Swap:")
@@ -61,9 +63,9 @@ def print_info(metric, unit):
     used = vm_metrics(swap.used, metric)
     free = vm_metrics(swap.free, metric)
 
-    print(f"\ttotal: {total}{unit}")
-    print(f"\tused: {used}{unit}")
-    print(f"\tfree: {free}{unit}")
+    print(f"\ttotal: {total} {unit}")
+    print(f"\tused: {used} {unit}")
+    print(f"\tfree: {free} {unit}")
 
 
 def main():
@@ -82,8 +84,17 @@ def main():
 
     args = ap.parse_args()
 
+    ####### only allow one flag at a time
     true_count = 0
-    # prevent more than one flag
+    vals = vars(args)
+
+    for i in vals.values():
+        if i == True:
+            true_count+=1
+    
+    if true_count > 1:
+        print("only one argument at a time")
+        exit(1)
 
 
     if args.gigabytes:
@@ -105,7 +116,7 @@ def main():
     elif args.version:
         print(version_info)
     
-    else:
+    else: # show in bytes by default
         metric = metric_info('b')
         print_info(metric, "")
 
