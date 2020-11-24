@@ -4,6 +4,7 @@ import sys
 
 mem = virtual_memory()
 swap = swap_memory()
+version_info = "pee version: 0.0.1"
 
 def metric_info(flag):
     '''get appropriate number for math for metric based on flag'''
@@ -76,8 +77,14 @@ def main():
             help="display memory info in kilobytes")
     ap.add_argument("-b", "--bytes", action="store_true",
             help="display memory info in bytes")
+    ap.add_argument("-V", "--version", action="store_true", 
+            help="display version info")
 
     args = ap.parse_args()
+
+    true_count = 0
+    # prevent more than one flag
+
 
     if args.gigabytes:
         metric = metric_info('gb')
@@ -94,6 +101,9 @@ def main():
     elif args.bytes:
         metric = metric_info('b')
         print_info(metric, "")
+
+    elif args.version:
+        print(version_info)
     
     else:
         metric = metric_info('b')
