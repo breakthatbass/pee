@@ -6,12 +6,13 @@ jobs:
     name: build and publish pee to pypi
     runs-on: macOS-latest
     steps:
-      - uses: action/checkout@v2
+      - uses: action/checkout@main
+        with: 
+          repository: ''
       - name: Set up Python 3.6
         uses: actions/setup-python@v1
         with:
           python-version: 3.6
-          repository: ''
       - name: Install pypa/build
         run: >-
           python -m
