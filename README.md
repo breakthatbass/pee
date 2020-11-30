@@ -5,13 +5,13 @@
 
 `pee` displays stats about `total`, `used`, `free`, and `available` memory in the system. By default (no flag), it returns the stats as bytes.
 
-`time` also returns `buffer` and `cache` info which is not available from the MacOS kernal. 
+Linux `time` also returns `buffer` and `cache` info, howeveer, it is not available from the MacOS kernal. 
 
 ## Installation
 `pip install pee`
 
 ## Usage
-`pee <-metric>` where `metric` is a data metric.  
+`pee <-flag>`  
 
 ### flags
 ```
