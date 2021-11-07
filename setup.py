@@ -14,7 +14,7 @@ setup(
         author='Taylor Gamache',
         author_email='gamache.taylor@gmail.com',
         url='https://github.com/breakthatbass/pee',
-        packages=find_packages(),
+        packages=['psutil'],
         install_requires=['psutil'],
         license='MIT',
         entry_points={
